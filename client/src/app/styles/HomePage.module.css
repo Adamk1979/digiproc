@@ -8,10 +8,6 @@
     text-align: center;
   }
   
-  .heading { /* Add a specific class for the heading */
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
   
   .productGrid {
     display: grid;
@@ -22,4 +18,134 @@
     justify-content: center;
     padding: 20px;
   }
+
+  .toggleCartButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
   
+  .toggleCartButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Cart Sidebar */
+  .cartIcon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #d9f7ea;
+    color: #fff;
+    border-radius: 25%;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cartIcon:hover {
+    background-color: #e08900;
+  }
+  
+  .cartCount {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 4px 8px;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  
+  /* Cart Sidebar */
+  .cartSidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .cartTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .cartImage {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  .cartPrice {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+
+  
+  .cartButton {
+    background-color: #ff4d4f;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .cartButton:hover {
+    background: #b36e07;
+  }
+  
+  .clearButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .clearButton:hover {
+    background-color: #cc0000;
+  }

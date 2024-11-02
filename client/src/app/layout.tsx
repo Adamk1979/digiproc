@@ -1,7 +1,6 @@
 // src/app/layout.tsx
 import React from 'react';
 import { CartProvider } from './contexts/CartContext';
-import Header from './components/Header';
 import "./globals.css";
 
 export const metadata = {
@@ -14,7 +13,6 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <html lang="en">
       <body>
         <CartProvider>
-          <Header />
           {children}
         </CartProvider>
       </body>

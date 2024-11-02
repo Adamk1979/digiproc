@@ -1,8 +1,7 @@
-// src/components/ProductCard.tsx
+// src/app/components/ProductCard.tsx
 "use client";
 
 import React from 'react';
-import { addToCart } from '../services/cartService';
 import styles from '../styles/ProductCard.module.css';
 
 type Product = {
@@ -16,14 +15,10 @@ type Product = {
 
 interface ProductCardProps {
   product: Product;
+  onAddToCart: (productId: string) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const handleAddToCart = async () => {
-    await addToCart(product.id);
-    alert(`${product.name} added to cart`);
-  };
-
+const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   // Format the price using Intl.NumberFormat
   const formattedPrice = new Intl.NumberFormat('sv-SE').format(product.price);
 
@@ -47,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         ))}
       </div>
       
-      <button onClick={handleAddToCart} className={styles.button} style={{ backgroundColor: product.color }}>
+      <button onClick={() => onAddToCart(product.id)} className={styles.button} style={{ backgroundColor: product.color }}>
         ADD TO CART
       </button>
     </div>

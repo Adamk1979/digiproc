@@ -1,4 +1,4 @@
-// client/src/app/contexts/CartContext.tsx
+// src/app/contexts/CartContext.tsx
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
@@ -15,9 +15,9 @@ type CartItem = {
 
 interface CartContextProps {
   cart: CartItem[];
-  addToCart: (product: CartItem) => Promise<void>;
+  addToCart: (productId: string) => Promise<void>;
   removeFromCart: (productId: string) => Promise<void>;
-  clearCart: () => void;
+  clearCart: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -25,6 +25,7 @@ const CartContext = createContext<CartContextProps | undefined>(undefined);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  // Load cart from backend on mount
   useEffect(() => {
     async function loadCart() {
       const fetchedCart = await viewCart();
@@ -33,26 +34,21 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     loadCart();
   }, []);
 
-  const addToCart = async (product: CartItem) => {
-    await addToCartService(product.id);
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      const updatedCart = existingItem
-        ? prevCart.map((item) =>
-            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-          )
-        : [...prevCart, { ...product, quantity: 1 }];
-      return updatedCart;
-    });
+  const addToCart = async (productId: string) => {
+    const updatedCart = await addToCartService(productId);
+    setCart(updatedCart); // Update state with the latest cart
   };
 
   const removeFromCart = async (productId: string) => {
-    await removeFromCartService(productId);
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    const updatedCart = await removeFromCartService(productId);
+    setCart(updatedCart); // Update state with the latest cart
   };
 
-  const clearCart = () => {
-    setCart([]);
+  const clearCart = async () => {
+    // Assuming clearCart API returns an empty array
+    const response = await fetch('http://localhost:4000/api/cart/clear', { method: 'POST' });
+    const clearedCart = await response.json();
+    setCart(clearedCart); // Reset cart to an empty array
   };
 
   return (

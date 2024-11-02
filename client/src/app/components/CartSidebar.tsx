@@ -1,4 +1,4 @@
-// src/components/CartSidebar.tsx
+// src/app/components/CartSidebar.tsx
 "use client";
 
 import React from 'react';
@@ -11,7 +11,6 @@ interface CartSidebarProps {
 
 const CartSidebar: React.FC<CartSidebarProps> = ({ closeSidebar }) => {
   const { cart, removeFromCart, clearCart } = useCart();
-  console.log("Cart items in CartSidebar:", cart); // Log cart to confirm structure
 
   return (
     <div className={styles.sidebar}>
@@ -27,7 +26,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ closeSidebar }) => {
               <div>
                 <h3>{item.name}</h3>
                 <p>Price: {item.price} SEK</p>
-                <p>Quantity: {item.quantity}</p> {/* Show quantity */}
+                <p>Quantity: {item.quantity}</p>
                 <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             </div>
