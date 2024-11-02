@@ -66,32 +66,33 @@ const HomePage: React.FC = () => {
         ))}
       </div>
 
-      {/* Cart Sidebar */}
-      {isCartVisible && (
-        <div className={styles.cartSidebar}>
-          <button onClick={() => setIsCartVisible(false)} className={styles.closeButton}>X</button>
-          <h2 className={styles.cartTitle}>Shopping Cart</h2>
-          {cart.length === 0 ? (
-            <p>Your cart is empty.</p>
-          ) : (
-            <div>
-              {cart.map((item) => (
-                <div key={item.id} className={styles.cartItem}>
-                  <img src={item.imageUrl} alt={item.name} className={styles.cartImage} />
-                  <div>
-                    <h3>{item.name}</h3>
-                    <p className={styles.cartPrice}>Price: {item.price} SEK</p>
-                    <button onClick={() => handleRemoveFromCart(item.id)} className={styles.cartButton}>
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              ))}
-              <button onClick={() => setCart([])} className={styles.clearButton}>Clear Cart</button>
+{/* Cart Sidebar */}
+{isCartVisible && (
+  <div className={styles.cartSidebar}>
+    <button onClick={() => setIsCartVisible(false)} className={styles.closeButton}>X</button>
+    <h2 className={styles.cartTitle}>Shopping Cart</h2>
+    {cart.length === 0 ? (
+      <p>Your cart is empty.</p>
+    ) : (
+      <div>
+        {cart.map((item) => (
+          <div key={item.id} className={styles.cartItem}>
+            <img src={item.imageUrl} alt={item.name} className={styles.cartImage} />
+            <div className={styles.cartDetails}>
+              <h3>{item.name}</h3>
+              <p className={styles.cartPrice}>Price: {item.price} SEK</p>
             </div>
-          )}
-        </div>
-      )}
+            <button onClick={() => handleRemoveFromCart(item.id)} className={styles.cartButton}>
+              Remove
+            </button>
+          </div>
+        ))}
+        <button onClick={() => setCart([])} className={styles.clearButton}>Clear Cart</button>
+      </div>
+    )}
+  </div>
+)}
+
     </div>
   );
 };
